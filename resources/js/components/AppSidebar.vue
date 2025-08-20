@@ -31,6 +31,11 @@ const adminNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
+        title: 'Roles',
+        href: '/admin/roles',
+        icon: User2,
+    },
+    {
         title: 'User Management',
         href: '/user-management',
         icon: UserCog,
