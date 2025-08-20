@@ -19,6 +19,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'admin'], functi
 
     Route::get('roles', RolesController::class.'@index')
         ->name('admin.roles.index');
+    Route::post('roles', RolesController::class.'@create')->name('admin.roles.create');
 });
 
 

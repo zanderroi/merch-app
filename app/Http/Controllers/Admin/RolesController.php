@@ -17,4 +17,21 @@ class RolesController extends Controller
             'roles' => $roles
         ]);
     }
+
+    public function create(Request $request)
+    {
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255|unique:roles,name',
+            ]);
+    
+            Role::create(['name' => $request->name]);
+    
+            return redirect()->route('admin.roles.index')
+                ->with('success', 'Role created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.roles.index')
+                ->with('error', 'Failed to create role: ' . $e->getMessage());
+        }
+    }
 }
