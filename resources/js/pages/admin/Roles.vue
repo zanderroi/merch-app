@@ -38,12 +38,18 @@
                         </form>
                     </DialogContent>
                 </Dialog>
-                <div v-if="page.props.flash.success" class="mb-4 rounded bg-green-100 p-2 text-green-700">
-                    {{ page.props.flash.success }}
-                </div>
-                <div v-if="page.props.flash.error" class="mb-4 rounded bg-red-100 p-2 text-red-700">
-                    {{ page.props.flash.error }}
-                </div>
+                <AlertOverlay
+                    v-if="page.props.flash.success"
+                    type="success"
+                    :message="page.props.flash.success"
+                    :key="page.props.flash.success + Date.now()"
+                />
+                <AlertOverlay
+                    v-if="page.props.flash.error"
+                    type="error"
+                    :message="page.props.flash.error"
+                    :key="page.props.flash.error + Date.now()"
+                />
                 <table class="w-full table-auto border-collapse border border-gray-300">
                     <thead>
                         <tr class="bg-gray-100">
@@ -69,6 +75,7 @@
 </template>
 
 <script setup lang="ts">
+import AlertOverlay from '@/components/ui/alert/AlertOverlay.vue';
 import { Dialog, DialogClose, DialogContent, DialogOverlay, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
